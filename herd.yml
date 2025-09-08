@@ -1,4 +1,4 @@
-name: filakit
+name: teamkit
 php: '8.3'
 secured: true
 aliases: {  }
