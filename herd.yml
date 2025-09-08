@@ -1,10 +1,7 @@
 name: teamkit
-php: '8.3'
+php: '8.4'
 secured: true
 aliases: {  }
-services:
-    mysql:
-        version: 8.0.36
-        port: '${DB_PORT}'
+services: {  }
 integrations:
     forge: {  }
