@@ -2687,9 +2687,8 @@ namespace PHPSTORM_META {
 'filament.admin.auth.password-reset.reset','filament.admin.auth.logout','filament.admin.auth.profile','filament.admin.pages.dashboard','filament.admin.pages..logs',
 'filament.admin.resources.admins.index','filament.admin.resources.admins.create','filament.admin.resources.admins.view','filament.admin.resources.admins.edit','filament.admin.resources.users.index',
 'filament.admin.resources.users.create','filament.admin.resources.users.view','filament.admin.resources.users.edit','filament.app.auth.login','filament.app.auth.password-reset.request',
-'filament.app.auth.password-reset.reset','filament.app.auth.logout','filament.app.auth.profile','filament.app.pages.dashboard','filament.guest.auth.logout',
-'filament.guest.pages.dashboard','livewire.update','livewire.upload-file',
-'livewire.preview-file','storage.local',);
+'filament.app.auth.password-reset.reset','filament.app.auth.logout','filament.app.auth.profile','filament.app.tenant.registration','filament.app.pages.dashboard',
+'filament.app.tenant.profile','filament.app.tenant','filament.guest.auth.logout','filament.guest.pages.dashboard','livewire.update','livewire.upload-file','livewire.preview-file','storage.local',);
         registerArgumentsSet('views', 
 'components.favicon','components.js-md5','filament-actions::badge-action','filament-actions::badge-group','filament-actions::button-action',
 'filament-actions::button-group','filament-actions::components.action','filament-actions::components.actions','filament-actions::components.group','filament-actions::components.modals',
