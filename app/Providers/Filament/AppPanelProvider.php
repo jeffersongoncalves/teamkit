@@ -3,6 +3,9 @@
 namespace App\Providers\Filament;
 
 use App\Filament\App\Pages\Auth\Login;
+use App\Filament\App\Pages\Tenancy\EditTeamProfile;
+use App\Filament\App\Pages\Tenancy\RegisterTeam;
+use App\Models\Team;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -34,15 +37,16 @@ class AppPanelProvider extends PanelProvider
                 'primary' => Color::Green,
             ])
             ->brandLogo(fn () => Vite::asset(config('teamkit.favicon.logo')))
-            ->brandLogoHeight(fn () => request()->is('admin/login', 'admin/password-reset/*') ? '121px' : '50px')
+            ->brandLogoHeight(fn () => request()->is('app/login', 'app/password-reset/*') ? '121px' : '50px')
             ->viteTheme('resources/css/filament/app/theme.css')
             ->defaultThemeMode(config('teamkit.theme_mode', ThemeMode::Dark))
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
+            ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
+            ->discoverClusters(in: app_path('Filament/App/Clusters'), for: 'App\\Filament\\App\\Clusters')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
@@ -68,6 +72,10 @@ class AppPanelProvider extends PanelProvider
             ->passwordReset()
             ->profile()
             ->databaseNotifications()
-            ->databaseNotificationsPolling('30s');
+            ->databaseNotificationsPolling('30s')
+            ->tenant(Team::class)
+            ->tenantRoutePrefix('team')
+            ->tenantRegistration(RegisterTeam::class)
+            ->tenantProfile(EditTeamProfile::class);
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Admin\Resources;
 
 use App\Filament\Infolists\AdditionalInformation;
-use App\Filament\Resources\UserResource\Pages;
-use App\Models\User;
+use App\Models\Admin;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
@@ -14,11 +13,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
 
-class UserResource extends Resource
+class AdminResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Admin::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationIcon = 'heroicon-c-user-circle';
 
     protected static bool $isGloballySearchable = true;
 
@@ -31,32 +30,32 @@ class UserResource extends Resource
 
     public static function getGlobalSearchResultUrl($record): string
     {
-        return UserResource::getUrl('view', ['record' => $record]);
+        return AdminResource::getUrl('view', ['record' => $record]);
     }
 
     public static function getModelLabel(): string
     {
-        return __('User');
+        return __('Admin');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Users');
+        return __('Admins');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('Users');
+        return __('Admins');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('User');
+        return __('Management');
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('users_count', fn () => User::query()->count());
+        return (string) Cache::rememberForever('admins_count', fn () => Admin::query()->count());
     }
 
     public static function form(Form $form): Form
@@ -76,7 +75,7 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->required()
                             ->string()
-                            ->unique('users', 'email', ignoreRecord: true)
+                            ->unique('admins', 'email', ignoreRecord: true)
                             ->email(),
                         Forms\Components\TextInput::make('password')
                             ->password()
@@ -148,10 +147,10 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'view' => Pages\ViewUser::route('/{record}'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => \App\Filament\Admin\Resources\AdminResource\Pages\ListAdmins::route('/'),
+            'create' => \App\Filament\Admin\Resources\AdminResource\Pages\CreateAdmin::route('/create'),
+            'view' => \App\Filament\Admin\Resources\AdminResource\Pages\ViewAdmin::route('/{record}'),
+            'edit' => \App\Filament\Admin\Resources\AdminResource\Pages\EditAdmin::route('/{record}/edit'),
         ];
     }
 }

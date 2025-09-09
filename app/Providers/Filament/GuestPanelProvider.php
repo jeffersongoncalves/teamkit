@@ -34,10 +34,11 @@ class GuestPanelProvider extends PanelProvider
             ->defaultThemeMode(config('teamkit.theme_mode', ThemeMode::Dark))
             ->discoverResources(in: app_path('Filament/Guest/Resources'), for: 'App\\Filament\\Guest\\Resources')
             ->discoverPages(in: app_path('Filament/Guest/Pages'), for: 'App\\Filament\\Guest\\Pages')
+            ->discoverWidgets(in: app_path('Filament/Guest/Widgets'), for: 'App\\Filament\\Guest\\Widgets')
+            ->discoverClusters(in: app_path('Filament/Guest/Clusters'), for: 'App\\Filament\\Guest\\Clusters')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Guest/Widgets'), for: 'App\\Filament\\Guest\\Widgets')
             ->widgets([])
             ->middleware([
                 EncryptCookies::class,
