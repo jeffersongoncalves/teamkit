@@ -61,7 +61,7 @@ use Illuminate\Support\Collection;
  * @mixin \Eloquent
  */
 #[ObservedBy(UserObserver::class)]
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasTenants, MustVerifyEmailContract, HasDefaultTenant
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, FilamentUser, HasDefaultTenant, HasTenants, MustVerifyEmailContract
 {
     use Authenticatable;
     use Authorizable;
@@ -111,7 +111,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function switchTeam($team): bool
     {
-        if (!$this->belongsToTeam($team)) {
+        if (! $this->belongsToTeam($team)) {
             return false;
         }
 
@@ -126,7 +126,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function belongsToTeam($team): bool
     {
-        return $this->ownsTeam($team) || $this->teams->contains(fn($t) => $t->id === $team->id);
+        return $this->ownsTeam($team) || $this->teams->contains(fn ($t) => $t->id === $team->id);
     }
 
     public function ownsTeam($team): bool
