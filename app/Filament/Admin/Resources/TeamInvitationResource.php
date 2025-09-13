@@ -3,7 +3,6 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\TeamInvitationResource\Pages;
-use App\Filament\Admin\Resources\TeamInvitationResource\RelationManagers;
 use App\Filament\Infolists\AdditionalInformation;
 use App\Models\Team;
 use App\Models\TeamInvitation;
@@ -59,7 +58,7 @@ class TeamInvitationResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string)Cache::rememberForever('team_invitations_count', fn() => TeamInvitation::query()->count());
+        return (string) Cache::rememberForever('team_invitations_count', fn () => TeamInvitation::query()->count());
     }
 
     public static function form(Form $form): Form
@@ -74,9 +73,9 @@ class TeamInvitationResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->label('Email address')
                     ->email()
-                    ->unique('team_invitations', 'email', modifyRuleUsing: fn($rule, Forms\Get $get) => $rule->where('team_id', $get('team_id')))
+                    ->unique('team_invitations', 'email', modifyRuleUsing: fn ($rule, Forms\Get $get) => $rule->where('team_id', $get('team_id')))
                     ->required()
-                    ->rules([fn(Forms\Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get) {
+                    ->rules([fn (Forms\Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get) {
                         $team = Team::find($get('team_id'));
                         if ($team->users()->where('email', $value)->exists()) {
                             $fail(__('The email has already been taken.'));
