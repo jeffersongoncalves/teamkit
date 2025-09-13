@@ -201,6 +201,36 @@ Tips:
 - When creating new Models/Resources that should be isolated by team, remember to relate them to `Team` and apply the scope in the middleware or in your queries.
 - If you need to define a default team, `User::currentTeam` is resolved automatically if `current_team_id` is empty (it falls back to the personal team if it exists).
 
+### Team Invitations (New)
+
+Teamkit now includes a built‑in Team Invitations flow to add members to a team by email.
+
+What you can do:
+- Invite users to a team (Admin panel)
+- Allow invited users to Accept or Cancel invitations (App panel)
+- Prevent duplicate or invalid invitations via built‑in validation
+
+Where to manage invitations:
+- Admin panel: Team Invitations resource
+  - Create an invitation by selecting a Team and entering the invitee's email address.
+  - Per‑team uniqueness: the same email cannot be invited twice to the same team.
+  - Safety checks: you cannot invite a user who is already the team owner or an existing team member. In these cases you will see "The email has already been taken.".
+- App panel: Invitations page (via the user menu)
+  - Invited users see a list of invitations addressed to the currently authenticated email.
+  - Actions:
+    - Accept: adds the user to the team and redirects to that team's dashboard in the App panel.
+    - Cancel: removes the pending invitation.
+  - Both actions show success notifications.
+
+Notes and implementation details:
+- The App panel shows a user menu item named "Invitations" when a team context exists. It opens the invitations list for the signed‑in user.
+- After accepting an invitation, the user is redirected to the App dashboard for the invited team, effectively switching context to that team.
+- Relevant classes (for reference):
+  - App\Filament\App\Pages\TeamInvitationAccept (App panel)
+  - App\Filament\Admin\Resources\TeamInvitationResource (Admin panel)
+  - App\Models\TeamInvitation (model)
+- Translations are available (en, pt_BR, es) for labels and notifications.
+
 ## Development
 
 ``` bash
