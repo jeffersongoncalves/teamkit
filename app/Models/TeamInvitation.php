@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Observers\TeamInvitationObserver;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -24,12 +27,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin \Eloquent
  */
+#[ObservedBy(TeamInvitationObserver::class)]
 class TeamInvitation extends Model
 {
     protected $fillable = [
         'team_id',
         'email',
     ];
+
+    public function accept(Authenticatable $user): void
+    {
+        $this->team->users()->attach($user->getAuthIdentifier());
+        $this->delete();
+    }
 
     public function team(): BelongsTo
     {

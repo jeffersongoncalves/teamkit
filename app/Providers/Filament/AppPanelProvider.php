@@ -3,16 +3,20 @@
 namespace App\Providers\Filament;
 
 use App\Filament\App\Pages\Auth\Login;
+use App\Filament\App\Pages\TeamInvitationAccept;
 use App\Filament\App\Pages\Tenancy\EditTeamProfile;
 use App\Filament\App\Pages\Tenancy\RegisterTeam;
 use App\Http\Middleware\ApplyTenantScopes;
 use App\Http\Middleware\CurrentTenant;
 use App\Models\Team;
+use Filament\Actions\Action;
 use Filament\Enums\ThemeMode;
+use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -38,8 +42,8 @@ class AppPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->brandLogo(fn () => Vite::asset(config('teamkit.favicon.logo')))
-            ->brandLogoHeight(fn () => request()->is('app/login', 'app/password-reset/*') ? '121px' : '50px')
+            ->brandLogo(fn() => Vite::asset(config('teamkit.favicon.logo')))
+            ->brandLogoHeight(fn() => request()->is('app/login', 'app/password-reset/*') ? '121px' : '50px')
             ->viteTheme('resources/css/filament/app/theme.css')
             ->defaultThemeMode(config('teamkit.theme_mode', ThemeMode::Dark))
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
@@ -69,6 +73,13 @@ class AppPanelProvider extends PanelProvider
             ])
             ->plugins([
                 //
+            ])
+            ->userMenuItems([
+                'invitations' => MenuItem::make()
+                    ->label(fn(): string => __('Invitations'))
+                    ->url(fn(): string => TeamInvitationAccept::getUrl())
+                    ->icon('heroicon-m-user-group')
+                    ->visible(fn() => Filament::getTenant() !== null),
             ])
             ->unsavedChangesAlerts()
             ->passwordReset()
