@@ -3,7 +3,6 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\AdminResource\Pages;
-use App\Filament\Admin\Resources\AdminResource\RelationManagers;
 use App\Filament\Infolists\AdditionalInformation;
 use App\Models\Admin;
 use Filament\Forms;
