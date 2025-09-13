@@ -11,5 +11,18 @@
     "Created at": "Criado em",
     "Updated at": "Atualizado em",
     "ADDITIONAL INFORMATION": "INFORMAÇÕES ADICIONAIS",
-    "Information on the date of registration and date of modification.": "Informações sobre a data de registro e data de modificação."
+    "Information on the date of registration and date of modification.": "Informações sobre a data de registro e data de modificação.",
+    "Team": "Equipe",
+    "Teams": "Equipes",
+    "Owner": "Proprietário",
+    "Team Invitation": "Convite de equipe",
+    "Team Invitations": "Convites de equipe",
+    "The email has already been taken.": "O e-mail já foi utilizado.",
+    "Accept invitation?": "Aceitar convite?",
+    "Invitation accepted!": "Convite aceito!",
+    "Cancel invitation?": "Cancelar convite?",
+    "Invitation canceled!": "Convite cancelado!",
+    "Register team": "Registrar equipe",
+    "Settings": "Configurações",
+    "Invitations": "Convites"
 }
