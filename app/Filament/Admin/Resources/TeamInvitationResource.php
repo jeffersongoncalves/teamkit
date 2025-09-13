@@ -2,10 +2,12 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\TeamResource\Pages;
-use App\Filament\Admin\Resources\TeamResource\RelationManagers;
+use App\Filament\Admin\Resources\TeamInvitationResource\Pages;
+use App\Filament\Admin\Resources\TeamInvitationResource\RelationManagers;
 use App\Filament\Infolists\AdditionalInformation;
 use App\Models\Team;
+use App\Models\TeamInvitation;
+use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
@@ -15,19 +17,19 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
 
-class TeamResource extends Resource
+class TeamInvitationResource extends Resource
 {
-    protected static ?string $model = Team::class;
+    protected static ?string $model = TeamInvitation::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     protected static bool $isGloballySearchable = true;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'email';
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'email'];
+        return ['email'];
     }
 
     public static function getGlobalSearchResultUrl($record): string
@@ -37,17 +39,17 @@ class TeamResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Team');
+        return __('Team Invitation');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Teams');
+        return __('Team Invitations');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('Teams');
+        return __('Team Invitations');
     }
 
     public static function getNavigationGroup(): ?string
@@ -57,19 +59,32 @@ class TeamResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string)Cache::rememberForever('teams_count', fn() => Team::query()->count());
+        return (string)Cache::rememberForever('team_invitations_count', fn() => TeamInvitation::query()->count());
     }
 
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(1)
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->label(__('Owner'))
-                    ->relationship('owner', 'name')
+                Forms\Components\Select::make('team_id')
+                    ->relationship('team', 'name')
+                    ->live(onBlur: true)
                     ->required(),
-                Forms\Components\TextInput::make('name')
-                    ->required(),
+                Forms\Components\TextInput::make('email')
+                    ->label('Email address')
+                    ->email()
+                    ->unique('team_invitations', 'email', modifyRuleUsing: fn($rule, Forms\Get $get) => $rule->where('team_id', $get('team_id')))
+                    ->required()
+                    ->rules([fn(Forms\Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get) {
+                        $team = Team::find($get('team_id'));
+                        if ($team->users()->where('email', $value)->exists()) {
+                            $fail(__('The email has already been taken.'));
+                        }
+                        if ($team->owner()->where('email', $value)->exists()) {
+                            $fail(__('The email has already been taken.'));
+                        }
+                    }]),
             ]);
     }
 
@@ -80,12 +95,9 @@ class TeamResource extends Resource
                 Infolists\Components\Section::make()
                     ->columns()
                     ->schema([
-                        Infolists\Components\TextEntry::make('id'),
-                        Infolists\Components\TextEntry::make('owner.name')
-                            ->label(__('Owner')),
-                        Infolists\Components\TextEntry::make('name'),
-                        Infolists\Components\IconEntry::make('personal_team')
-                            ->boolean(),
+                        Infolists\Components\TextEntry::make('team.name')
+                            ->label('Team'),
+                        Infolists\Components\TextEntry::make('email'),
                     ]),
                 AdditionalInformation::make([
                     'created_at',
@@ -98,14 +110,11 @@ class TeamResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('owner.name')
-                    ->label(__('Owner'))
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('team.name')
+                    ->label(__('Team'))
                     ->searchable(),
-                Tables\Columns\IconColumn::make('personal_team')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -122,23 +131,18 @@ class TeamResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            RelationManagers\UsersRelationManager::class,
-        ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeams::route('/'),
-            'create' => Pages\CreateTeam::route('/create'),
-            'view' => Pages\ViewTeam::route('/{record}'),
-            'edit' => Pages\EditTeam::route('/{record}/edit'),
+            'index' => Pages\ManageTeamInvitations::route('/'),
         ];
     }
 }
