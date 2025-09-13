@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Observers\TeamObserver;
+use App\Policies\TeamPolicy;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -34,6 +38,8 @@ use Illuminate\Support\Collection;
  *
  * @mixin \Eloquent
  */
+#[ObservedBy(TeamObserver::class)]
+#[UsePolicy(TeamPolicy::class)]
 class Team extends Model
 {
     protected $fillable = [
