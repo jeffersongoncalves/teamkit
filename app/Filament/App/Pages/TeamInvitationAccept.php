@@ -16,10 +16,10 @@ class TeamInvitationAccept extends Page implements HasTable
     use InteractsWithTable;
 
     protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.app.pages.team-invitation-accept';
-
 
     public static function table(Table $table): Table
     {
@@ -44,10 +44,10 @@ class TeamInvitationAccept extends Page implements HasTable
             ])
             ->actions([
                 Action::make('accept')
-                    ->icon("heroicon-o-check")
+                    ->icon('heroicon-o-check')
                     ->iconButton()
                     ->requiresConfirmation()
-                    ->modalIcon("heroicon-o-check")
+                    ->modalIcon('heroicon-o-check')
                     ->modalHeading(__('Accept invitation?'))
                     ->action(function (TeamInvitation $record) {
                         $record->accept(auth()->user());
@@ -61,10 +61,10 @@ class TeamInvitationAccept extends Page implements HasTable
                     }),
                 Action::make('cancel')
                     ->color('danger')
-                    ->icon("heroicon-o-x-mark")
+                    ->icon('heroicon-o-x-mark')
                     ->iconButton()
                     ->requiresConfirmation()
-                    ->modalIcon("heroicon-o-x-mark")
+                    ->modalIcon('heroicon-o-x-mark')
                     ->modalHeading(__('Cancel invitation?'))
                     ->action(function (TeamInvitation $record) {
                         $record->delete();
