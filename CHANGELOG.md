@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.3.45 - 2025-11-11
+
+### What's Changed
+
+* chore(deps-dev): bump axios from 1.12.2 to 1.13.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/13
+* chore(deps-dev): bump axios from 1.13.0 to 1.13.1 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/14
+* chore(deps-dev): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/15
+* chore(deps-dev): bump vite from 7.2.0 to 7.2.1 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/16
+* chore(deps-dev): bump vite from 7.2.1 to 7.2.2 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/17
+
+**Full Changelog**: https://github.com/jeffersongoncalves/teamkit/compare/3.3.43...3.3.45
+
 ## 3.3.43 - 2025-10-27
 
 ### What's Changed
