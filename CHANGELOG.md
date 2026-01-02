@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.3.46 - 2026-01-01
+
+### What's Changed
+
+* chore(deps-dev): bump autoprefixer from 10.4.21 to 10.4.22 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/18
+* chore(deps-dev): bump vite from 7.2.2 to 7.2.4 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/19
+* chore(deps): bump actions/checkout from 5 to 6 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/20
+* chore(deps-dev): bump vite from 7.2.4 to 7.2.6 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/21
+* chore(deps-dev): bump vite from 7.2.6 to 7.2.7 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/22
+* chore(deps-dev): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/23
+* chore(deps-dev): bump @tailwindcss/forms from 0.5.10 to 0.5.11 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/24
+
+**Full Changelog**: https://github.com/jeffersongoncalves/teamkit/compare/3.3.45...3.3.46
+
 ## 3.3.45 - 2025-11-11
 
 ### What's Changed
