@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.3.47 - 2026-01-09
+
+### What's Changed
+
+* Add funding information for GitHub by @jeffersongoncalves in https://github.com/jeffersongoncalves/teamkit/pull/25
+* chore(deps): bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/26
+* chore(deps-dev): bump laravel/pint from 1.26.0 to 1.27.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/27
+* chore(deps-dev): bump vite from 7.3.0 to 7.3.1 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/28
+* chore(deps): bump the actions-deps group with 3 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/29
+* chore(deps): bump laravel/framework from 12.45.1 to 12.45.2 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/30
+* chore(deps): bump laravel/framework from 12.45.2 to 12.46.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/31
+
+### New Contributors
+
+* @jeffersongoncalves made their first contribution in https://github.com/jeffersongoncalves/teamkit/pull/25
+
+**Full Changelog**: https://github.com/jeffersongoncalves/teamkit/compare/3.3.46...3.3.47
+
 ## 3.3.46 - 2026-01-01
 
 ### What's Changed
