@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.3.48 - 2026-02-10
+
+### What's Changed
+
+* chore(deps): bump laravel/framework from 12.46.0 to 12.47.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/33
+* chore(deps-dev): bump postcss-nesting from 13.0.2 to 14.0.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/32
+* chore(deps-dev): bump larastan/larastan from 3.8.1 to 3.9.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/34
+* chore(deps-dev): bump laravel-vite-plugin from 2.0.1 to 2.1.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/35
+* chore(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/36
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 3.16.3 to 3.16.4 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/37
+* chore(deps-dev): bump axios from 1.13.2 to 1.13.3 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/38
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 3.16.4 to 4.0.2 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/39
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 4.0.2 to 4.0.3 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/40
+* chore(deps-dev): bump axios from 1.13.3 to 1.13.4 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/41
+* chore(deps): bump laravel/framework from 12.48.1 to 12.49.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/42
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 4.0.3 to 4.0.4 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/43
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 4.0.4 to 4.0.5 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/44
+* chore(deps): bump psy/psysh from 0.12.18 to 0.12.19 by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/45
+* chore(deps-dev): bump autoprefixer from 10.4.23 to 10.4.24 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/46
+* chore(deps-dev): bump larastan/larastan from 3.9.1 to 3.9.2 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/47
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 4.0.5 to 4.0.6 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/48
+* chore(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/49
+* chore(deps): bump glob from 10.4.5 to 10.5.0 by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/50
+* chore(deps-dev): bump axios from 1.13.4 to 1.13.5 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/51
+* chore(deps-dev): bump barryvdh/laravel-debugbar from 4.0.6 to 4.0.7 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/teamkit/pull/52
+
+**Full Changelog**: https://github.com/jeffersongoncalves/teamkit/compare/3.3.47...3.3.48
+
 ## 3.3.47 - 2026-01-09
 
 ### What's Changed
