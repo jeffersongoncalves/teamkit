@@ -1,5 +1,5 @@
 {
-    "name" : "@jeffersongoncalves/teamkit",
+    "name": "@jeffersongoncalves/teamkit",
     "private": true,
     "type": "module",
     "scripts": {
@@ -8,7 +8,10 @@
     },
     "pnpm": {
         "overrides": {
-            "rollup": ">=4.59.0"
+            "rollup": ">=4.59.0",
+            "minimatch": ">=9.0.6",
+            "glob": ">=11.0.0",
+            "brace-expansion": ">=2.0.3"
         }
     },
     "devDependencies": {
