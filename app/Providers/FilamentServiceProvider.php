@@ -5,13 +5,21 @@ namespace App\Providers;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Infolists;
-use Filament\Notifications;
 use Filament\Pages;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\ValidationException;
 
+/**
+ * Kit-specific Filament customizations that are NOT covered by the
+ * jeffersongoncalves/filament-sensible-defaults plugin (which is auto-applied
+ * and provides the baseline action/form/table/infolist defaults).
+ *
+ * Only the non-default tweaks remain here: Brazilian display formats, sticky
+ * form actions, and the Filament 3 table-action / form-action / infolist-action
+ * defaults that the plugin does not configure. These boot after the plugin, so
+ * they intentionally win where they overlap.
+ */
 class FilamentServiceProvider extends ServiceProvider
 {
     private string $defaultDateDisplayFormat = 'd/m/Y';
@@ -20,7 +28,6 @@ class FilamentServiceProvider extends ServiceProvider
 
     private string $defaultCurrency = 'brl';
 
-    // Ref: https://github.com/filamentphp-br/satis/blob/main/app/Providers/FilamentServiceProvider.php -> boot
     public function boot(): void
     {
         $this->configureActions();
@@ -32,102 +39,24 @@ class FilamentServiceProvider extends ServiceProvider
 
     private function configureActions(): void
     {
-        Actions\ActionGroup::configureUsing(function (Actions\ActionGroup $action) {
-            return $action->icon('heroicon-o-ellipsis-horizontal');
-        });
-
-        Actions\Action::configureUsing(function (Actions\Action $action) {
-            return $action->translateLabel()
-                ->modalWidth(MaxWidth::Medium)
-                ->closeModalByClickingAway(false);
-        });
-
         Actions\StaticAction::configureUsing(function (Actions\StaticAction $staticAction) {
             return $staticAction->translateLabel();
-        });
-
-        Actions\CreateAction::configureUsing(function (Actions\CreateAction $action) {
-            return $action->icon('heroicon-o-plus')
-                ->createAnother(false);
-        });
-
-        Actions\EditAction::configureUsing(function (Actions\EditAction $action) {
-            return $action->icon('heroicon-o-pencil');
-        });
-
-        Actions\DeleteAction::configureUsing(function (Actions\DeleteAction $action) {
-            return $action->icon('heroicon-o-trash');
-        });
-
-        Actions\ViewAction::configureUsing(function (Actions\ViewAction $action) {
-            return $action->icon('heroicon-o-eye');
         });
     }
 
     private function configureForms(): void
     {
-        Forms\Components\Field::configureUsing(function (Forms\Components\Field $field) {
-            return $field->translateLabel();
-        });
-
         Forms\Components\Actions\Action::configureUsing(function (Forms\Components\Actions\Action $action) {
             return $action->modalWidth(MaxWidth::Medium)
                 ->closeModalByClickingAway(false);
-        });
-
-        Forms\Components\ToggleButtons::configureUsing(function (Forms\Components\ToggleButtons $component) {
-            return $component->inline()
-                ->grouped();
         });
 
         Forms\Components\Placeholder::configureUsing(function (Forms\Components\Placeholder $component) {
             return $component->columnSpanFull();
         });
 
-        Forms\Components\TextInput::configureUsing(function (Forms\Components\TextInput $component) {
-            return $component->minValue(0);
-        });
-
-        Forms\Components\Select::configureUsing(function (Forms\Components\Select $component) {
-            return $component->native(false)
-                ->selectablePlaceholder(function (Forms\Components\Select $component) {
-                    return ! $component->isRequired();
-                })
-                ->searchable(function (Forms\Components\Select $component) {
-                    return $component->hasRelationship();
-                })
-                ->preload(function (Forms\Components\Select $component) {
-                    return $component->isSearchable();
-                });
-        });
-
-        Forms\Components\DateTimePicker::configureUsing(function (Forms\Components\DateTimePicker $component) {
-            return $component->seconds(false)
-                ->maxDate('9999-12-31T23:59');
-        });
-
-        Forms\Components\Repeater::configureUsing(function (Forms\Components\Repeater $component) {
-            return $component->deleteAction(function (Forms\Components\Actions\Action $action) {
-                return $action->requiresConfirmation();
-            });
-        });
-
-        Forms\Components\Builder::configureUsing(function (Forms\Components\Builder $component) {
-            return $component->deleteAction(function (Forms\Components\Actions\Action $action) {
-                return $action->requiresConfirmation();
-            });
-        });
-
-        Forms\Components\FileUpload::configureUsing(function (Forms\Components\FileUpload $component) {
-            return $component->moveFiles();
-        });
-
         Forms\Components\RichEditor::configureUsing(function (Forms\Components\RichEditor $component) {
             return $component->disableToolbarButtons(['blockquote']);
-        });
-
-        Forms\Components\Textarea::configureUsing(function (Forms\Components\Textarea $component) {
-            return $component->rows(4);
         });
     }
 
@@ -139,10 +68,6 @@ class FilamentServiceProvider extends ServiceProvider
 
         Infolists\Infolist::$defaultCurrency = $this->defaultCurrency;
 
-        Infolists\Components\Entry::configureUsing(function (Infolists\Components\Entry $entry) {
-            return $entry->translateLabel();
-        });
-
         Infolists\Components\Actions\Action::configureUsing(function (Infolists\Components\Actions\Action $action) {
             return $action->modalWidth(MaxWidth::Medium)
                 ->closeModalByClickingAway(false);
@@ -151,12 +76,6 @@ class FilamentServiceProvider extends ServiceProvider
 
     private function configurePages(): void
     {
-        Pages\Page::$reportValidationErrorUsing = function (ValidationException $exception) {
-            Notifications\Notification::make()
-                ->title($exception->getMessage())
-                ->danger()
-                ->send();
-        };
         Pages\Page::$formActionsAreSticky = true;
     }
 
@@ -167,19 +86,6 @@ class FilamentServiceProvider extends ServiceProvider
         Tables\Table::$defaultDateTimeDisplayFormat = $this->defaultDateTimeDisplayFormat;
 
         Tables\Table::$defaultCurrency = $this->defaultCurrency;
-
-        Tables\Columns\Column::configureUsing(function (Tables\Columns\Column $column) {
-            return $column->translateLabel();
-        });
-
-        Tables\Table::configureUsing(function (Tables\Table $table) {
-            return $table->filtersFormWidth('md')
-                ->paginationPageOptions([5, 10, 25, 50]);
-        });
-
-        Tables\Columns\ImageColumn::configureUsing(function (Tables\Columns\ImageColumn $column) {
-            return $column->extraImgAttributes(['loading' => 'lazy']);
-        });
 
         Tables\Actions\Action::configureUsing(function (Tables\Actions\Action $action) {
             return $action->modalWidth(MaxWidth::Medium)
@@ -203,10 +109,6 @@ class FilamentServiceProvider extends ServiceProvider
         Tables\Actions\DeleteAction::configureUsing(function (Tables\Actions\DeleteAction $action) {
             return $action->hiddenLabel()
                 ->button();
-        });
-
-        Tables\Filters\SelectFilter::configureUsing(function (Tables\Filters\SelectFilter $filter) {
-            return $filter->native(false);
         });
     }
 }

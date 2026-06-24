@@ -3,7 +3,6 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\AdminResource\Pages;
-use App\Filament\Infolists\AdditionalInformation;
 use App\Models\Admin;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
+use JeffersonGoncalves\Filament\AdditionalInformation\AdditionalInformation;
 
 class AdminResource extends Resource
 {

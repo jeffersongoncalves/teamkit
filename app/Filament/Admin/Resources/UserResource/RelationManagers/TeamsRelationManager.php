@@ -2,14 +2,15 @@
 
 namespace App\Filament\Admin\Resources\UserResource\RelationManagers;
 
-use App\Filament\Admin\Resources\TeamResource;
+use App\Models\User;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamResource;
 
 /**
- * @property \App\Models\User $ownerRecord
+ * @property User $ownerRecord
  */
 class TeamsRelationManager extends RelationManager
 {
