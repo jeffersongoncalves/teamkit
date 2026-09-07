@@ -23,9 +23,9 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
-use JeffersonGoncalves\Filament\Teams\Concerns\HasTeams;
-use JeffersonGoncalves\Filament\Teams\Models\Membership;
-use JeffersonGoncalves\Filament\Teams\Models\Team;
+use JeffersonGoncalves\Filament\Teams\Concerns\HasTeamsFilament;
+use JeffersonGoncalves\Teams\Models\Membership;
+use JeffersonGoncalves\Teams\Models\Team;
 
 /**
  * @property int $id
@@ -71,7 +71,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authorizable;
     use CanResetPassword;
     use HasFactory;
-    use HasTeams;
+    use HasTeamsFilament;
     use MustVerifyEmail;
     use Notifiable;
 

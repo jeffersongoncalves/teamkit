@@ -2508,27 +2508,28 @@
         },
         {
             "name": "jeffersongoncalves/filament-teams",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeffersongoncalves/filament-teams.git",
-                "reference": "9ae07401c3eb26b33aa4eb14c8c3420733ebc7de"
+                "reference": "5316490a0eb3a43e4ff3b24237d09c93d32917e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeffersongoncalves/filament-teams/zipball/9ae07401c3eb26b33aa4eb14c8c3420733ebc7de",
-                "reference": "9ae07401c3eb26b33aa4eb14c8c3420733ebc7de",
+                "url": "https://api.github.com/repos/jeffersongoncalves/filament-teams/zipball/5316490a0eb3a43e4ff3b24237d09c93d32917e6",
+                "reference": "5316490a0eb3a43e4ff3b24237d09c93d32917e6",
                 "shasum": ""
             },
             "require": {
                 "filament/filament": "^3.0",
-                "php": "^8.1",
+                "jeffersongoncalves/laravel-teams": "^2.0",
+                "php": "^8.2",
                 "spatie/laravel-package-tools": "^1.14.0"
             },
             "require-dev": {
                 "larastan/larastan": "^2.0|^3.0",
                 "laravel/pint": "^1.21",
-                "orchestra/testbench": "^8.0|^9.0",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
                 "pestphp/pest": "^2.0|^3.0",
                 "pestphp/pest-plugin-laravel": "^2.0|^3.0"
             },
@@ -2569,15 +2570,19 @@
             ],
             "support": {
                 "issues": "https://github.com/jeffersongoncalves/filament-teams/issues",
-                "source": "https://github.com/jeffersongoncalves/filament-teams/tree/1.0.0"
+                "source": "https://github.com/jeffersongoncalves/filament-teams/tree/1.1.0"
             },
             "funding": [
+                {
+                    "url": "https://buymeacoffee.com/jeffersongoncalves",
+                    "type": "custom"
+                },
                 {
                     "url": "https://github.com/jeffersongoncalves",
                     "type": "github"
                 }
             ],
-            "time": "2026-06-24T00:50:48+00:00"
+            "time": "2026-09-07T03:11:38+00:00"
         },
         {
             "name": "jeffersongoncalves/laravel-pwa-favicon",
@@ -2647,6 +2652,80 @@
                 }
             ],
             "time": "2026-06-21T18:09:36+00:00"
+        },
+        {
+            "name": "jeffersongoncalves/laravel-teams",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeffersongoncalves/laravel-teams.git",
+                "reference": "ed1dfc5d58ee60a805af874057620c5b61bc2c95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeffersongoncalves/laravel-teams/zipball/ed1dfc5d58ee60a805af874057620c5b61bc2c95",
+                "reference": "ed1dfc5d58ee60a805af874057620c5b61bc2c95",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^12.61.1|^13.12.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.24",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^3.7.4|^4.0",
+                "pestphp/pest-plugin-laravel": "^3.0|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JeffersonGoncalves\\Teams\\TeamsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JeffersonGoncalves\\Teams\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jefferson Gonçalves",
+                    "email": "gerson.simao.92@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package that adds Teams, memberships, and team invitations with multi-tenancy support to your application.",
+            "homepage": "https://github.com/jeffersongoncalves/laravel-teams",
+            "keywords": [
+                "Teams",
+                "jeffersongoncalves",
+                "laravel",
+                "laravel-teams",
+                "multi-tenancy"
+            ],
+            "support": {
+                "issues": "https://github.com/jeffersongoncalves/laravel-teams/issues",
+                "source": "https://github.com/jeffersongoncalves/laravel-teams/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/jeffersongoncalves",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-08-01T22:09:47+00:00"
         },
         {
             "name": "kirschbaum-development/eloquent-power-joins",
