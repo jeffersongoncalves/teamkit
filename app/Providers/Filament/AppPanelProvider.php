@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\App\Pages\Auth\Login;
 use Filament\Enums\ThemeMode;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
@@ -25,6 +24,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use JeffersonGoncalves\Filament\Pwa\FilamentPwaPlugin;
 use JeffersonGoncalves\Filament\Teams\FilamentTeamsPlugin;
 use JeffersonGoncalves\Filament\Teams\Pages\TeamInvitationAccept;
+use JeffersonGoncalves\Filament\User\Pages\Auth\Login;
 
 class AppPanelProvider extends PanelProvider
 {
