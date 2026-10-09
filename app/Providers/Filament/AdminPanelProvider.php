@@ -24,8 +24,10 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use JeffersonGoncalves\Filament\Admin\AdminPlugin;
 use JeffersonGoncalves\Filament\Admin\Pages\Auth\Login;
 use JeffersonGoncalves\Filament\Pwa\FilamentPwaPlugin;
+use JeffersonGoncalves\Filament\SecurityHeaders\SecurityHeadersPlugin;
 use JeffersonGoncalves\Filament\Teams\FilamentTeamsPlugin;
 use JeffersonGoncalves\Filament\User\UserPlugin;
+use JeffersonGoncalves\SecurityHeaders\Middleware\SecurityHeaders;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -56,6 +58,7 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
+                SecurityHeaders::class,
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
@@ -75,6 +78,8 @@ class AdminPanelProvider extends PanelProvider
                 __('Settings'),
             ])
             ->plugins([
+                SecurityHeadersPlugin::make()
+                    ->navigationGroup(fn (): string => __('Settings')),
                 AdminPlugin::make(),
                 UserPlugin::make()
                     ->resource(UserResource::class),
