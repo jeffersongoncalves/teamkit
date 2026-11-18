@@ -4,7 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\UserResource\RelationManagers\OwnedTeamsRelationManager;
 use App\Filament\Admin\Resources\UserResource\RelationManagers\TeamsRelationManager;
-use JeffersonGoncalves\Filament\User\Resources\Users\UserResource as BaseUserResource;
+use JeffersonGoncalves\Filament\User\Resources\UserResource as BaseUserResource;
 
 /**
  * The filament-user resource plus the team relations. Registered with
